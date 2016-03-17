@@ -1,6 +1,6 @@
 import urllib
 import sys
-
+import webbrowser
 def convertQuery(query):
     output = ""
     for i in query:
@@ -11,7 +11,7 @@ def convertQuery(query):
     return output
 
 def searchURL(query):
-    nurl = "esearch.fcgi?db=PubMed&term=" + query
+    nurl = "esearch.fcgi?db=PubMed&sort=relevance&term=" + query
     return nurl
 
 def fetchURL(id):
@@ -38,11 +38,11 @@ query = convertQuery(query)
 
 url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
 page = urllib.urlopen(url + searchURL(convertQuery(query)))
+print url + searchURL(convertQuery(query))
 source = page.read()
 page.close()
 idListStart = source.find("IdList") + 8
 idListEnd = source.find("</IdList>")
-
 idList = removeBrackets(source[idListStart:idListEnd]).split()
 
 urlList = []
