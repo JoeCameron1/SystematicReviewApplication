@@ -12,6 +12,14 @@
             <h1>The Ultimate Review</h1>
         </div>
 
+        <div>
+          {% if user.is_authenticated %}
+            <h2>Hello {{ user.username }}!</h1>
+          {% else %}
+            <h2>Hello Guest!</h1>
+          {% endif %}
+        </div>
+
 				<label>Type your query here</label>
 
 				<div>
@@ -25,8 +33,14 @@
 					<script type="text/javascript" src="https%3A%2F%2Fcse.google.com%2Fcse/tools/onthefly?form=searchbox_demo&lang="></script>
 				</div>
 
-				<div>
-						<a href="/ultimatereview/register/">Register Here</a>
+        <div>
+          {% if user.is_authenticated %}
+          <a href="/ultimatereview/restricted/">Restricted Page</a><br />
+          <a href="/ultimatereview/logout/">Logout</a><br />
+          {% else %}
+          <a href="/ultimatereview/register/">Register Here</a><br />
+          <a href="/ultimatereview/login/">Login</a><br />
+          {% endif %}
         </div>
 
         <div>

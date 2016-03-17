@@ -1,22 +1,22 @@
-{% load staticfiles %}
+<!DOCTYPE html>
 <html>
     <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
         <title>The Ultimate Review</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
+
     <body>
+        <h1>Login to The Ultimate Review</h1>
 
-        <div>
-            <h1>The Ultimate Review</h1>
-        </div>
+        <form id="login_form" method="post" action="/ultimatereview/login/">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
 
-				<label>This is the login page.</label>
+            <input type="submit" value="submit" />
+        </form>
 
-        <div>
-            <h4><a href="">About</a></h4>
-            <p>Learn about the ultimate review.</p>
-        </div>
     </body>
 </html>
