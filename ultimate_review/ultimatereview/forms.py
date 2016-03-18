@@ -19,3 +19,9 @@ class CreateReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('name',)
+
+class CreateSimpleQueryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Must be unique'}))
+    class Meta:
+        model = Query
+        fields = ('name',)    

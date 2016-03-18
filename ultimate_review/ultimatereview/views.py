@@ -17,8 +17,8 @@ def index(request):
 
     return render(request, 'ultimatereview/index.html', context_dict)
 
-def profile(request):
-    return HttpResponse("This is the profile page.")
+def myprofile(request):
+    return HttpResponse("This is your profile page.")
 
 def register(request):
 
