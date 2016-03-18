@@ -18,7 +18,7 @@ class UpdateProfileForm(forms.ModelForm):
 
     username = forms.CharField(label='Username')
     email = forms.CharField(label='Email')
-    password = forms.CharField(label = 'Password') 
+    password = forms.CharField(label = 'Password')
 
     class Meta:
         model = User
