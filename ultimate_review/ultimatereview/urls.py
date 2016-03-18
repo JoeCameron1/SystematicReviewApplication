@@ -7,6 +7,5 @@ urlpatterns = patterns('',
                        url(r'^login/$', views.user_login, name='login'),
                        url(r'^myreviews/', views.myreviews, name='myreviews'),
                        url(r'^myprofile/', views.myprofile, name='myprofile'),
-                       url(r'^myprofile/edit/$', views.editmyprofile, name='edit_profile'),
                        url(r'^logout/$', views.user_logout, name='logout'),
                        )

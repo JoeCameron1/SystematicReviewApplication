@@ -22,18 +22,8 @@ def index(request):
 def myprofile(request):
     user = request.user
     form = UserForm(initial={'username':user.username, 'email':user.email, 'password':user.password})
-    context = {
-        "form": form
-    }
-    return render(request, 'ultimatereview/myprofile.html', context)
-
-def editmyprofile(request):
-
-    user = request.user
-    form = UpdateProfileForm(request.POST or None, initial={'username':user.username, 'email':user.email, 'password':user.password})
     if request.method == 'POST':
         if form.is_valid():
-
 
             user.username = request.POST['username']
             user.email = request.POST['email']
@@ -41,12 +31,10 @@ def editmyprofile(request):
 
             user.save()
             return HttpResponseRedirect('%s'%(reverse('profile')))
-
     context = {
         "form": form
     }
-
-    return render(request, "ultimatereview/edit_profile.html", context)
+    return render(request, 'ultimatereview/myprofile.html', context)
 
 def register(request):
 
