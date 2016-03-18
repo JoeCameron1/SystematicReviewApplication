@@ -9,4 +9,5 @@ urlpatterns = patterns('',
                        url(r'^myprofile/', views.myprofile, name='myprofile'),
                        url(r'^myprofile/edit/$', views.editmyprofile, name='edit_profile'),
                        url(r'^logout/$', views.user_logout, name='logout'),
+                       url(r'^query/$', views.indexQueried, name='query'),
                        )
