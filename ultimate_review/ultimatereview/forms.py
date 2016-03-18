@@ -14,6 +14,16 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('website', 'picture')
 
+class UpdateProfileForm(forms.ModelForm):
+
+    username = forms.CharField(label='Username')
+    email = forms.CharField(label='Email')
+    password = forms.CharField(label = 'Password') 
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
 class CreateReviewForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Must be unique'}))
     class Meta:
@@ -24,4 +34,4 @@ class CreateSimpleQueryForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Must be unique'}))
     class Meta:
         model = Query
-        fields = ('name',)    
+        fields = ('name',)

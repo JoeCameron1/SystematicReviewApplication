@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from ultimatereview.forms import UserForm, UserProfileForm
+from ultimatereview.forms import UserForm, UserProfileForm, UpdateProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -18,7 +18,33 @@ def index(request):
     return render(request, 'ultimatereview/index.html', context_dict)
 
 def myprofile(request):
-    return HttpResponse("This is your profile page.")
+    user = request.user
+    form = UserProfileForm(initial={'username':user.username, 'email':user.email, 'password':user.password})
+    context = {
+        "form": form
+    }
+    return render(request, 'ultimatereview/myprofile.html', context)
+
+def editmyprofile(request):
+
+    user = request.user
+    form = UpdateProfileForm(request.POST or None, initial={'username':user.username, 'email':user.email, 'password':user.password})
+    if request.method == 'POST':
+        if form.is_valid():
+
+
+            user.username = request.POST['username']
+            user.email = request.POST['email']
+            user.password = request.POST['password']
+
+            user.save()
+            return HttpResponseRedirect('%s'%(reverse('profile')))
+
+    context = {
+        "form": form
+    }
+
+    return render(request, "ultimatereview/edit_profile.html", context)
 
 def register(request):
 
