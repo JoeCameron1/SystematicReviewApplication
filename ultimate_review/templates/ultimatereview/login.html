@@ -1,22 +1,17 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
-        <title>The Ultimate Review</title>
-    </head>
+<header><b><font size="6">The Ultimate Review</font></b></header>
+<br><br>
+<body>
+<font size = "4">Login</font>
+<form>
+		<br>
+		Username:<br> 
+	  <input type="username" name = "query"><br>
+	  <br>
+	  Password:<br>   
+	  <input type="password" name = "password"><br>
 
-    <body>
-        <h1>Login to The Ultimate Review</h1>
+</body>
 
-        <form id="login_form" method="post" action="/ultimatereview/login/">
-            {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
 
-            <input type="submit" value="submit" />
-        </form>
-
-    </body>
 </html>
