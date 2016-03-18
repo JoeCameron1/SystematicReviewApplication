@@ -4,10 +4,7 @@ from django.contrib.auth.models import User
 from datetime import date
 
 class Researcher(models.Model):
-    user = models.ForeignKey(User)
-    user_name = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
-    email = models.CharField(max_length=30)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.user_name
@@ -31,7 +28,7 @@ class Review(models.Model):
         return self.title
 
 class Query(models.Model):
-    review = models.OneToOneField(Review)
+    review = models.ForeignKey(Review)
     name = models.CharField(max_length=30)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3

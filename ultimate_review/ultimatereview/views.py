@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from ultimatereview.forms import UserForm, UserProfileForm, UpdateProfileForm
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -17,9 +18,10 @@ def index(request):
 
     return render(request, 'ultimatereview/index.html', context_dict)
 
+@login_required
 def myprofile(request):
     user = request.user
-    form = UserProfileForm(initial={'username':user.username, 'email':user.email, 'password':user.password})
+    form = UserForm(initial={'username':user.username, 'email':user.email, 'password':user.password})
     context = {
         "form": form
     }

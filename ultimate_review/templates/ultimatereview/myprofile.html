@@ -8,10 +8,18 @@
 
 <h1>Your Profile</h1>
 
-<form action="/ultimate/review/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="OK">
+<form>
+  {% for field in form %}
+  <div class="fieldWrapper">
+      {{ field.errors }}
+      {{ field.label_tag }} {{ field }}
+      {% if field.help_text %}
+      <p class="help">{{ field.help_text|safe }}</p>
+      {% endif %}
+  </div>
+{% endfor %}
 </form>
+
+<a href="{% url 'edit_profile' %}">Update Profile</a><br />
 
 {% endblock %}
