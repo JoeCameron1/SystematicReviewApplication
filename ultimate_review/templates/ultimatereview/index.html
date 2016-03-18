@@ -23,14 +23,11 @@
 				<label>Type your query here</label>
 
 				<div>
-					<form name="cse" id="searchbox_demo" action="https://www.google.com/cse">
-						<input type="hidden" name="cref" value="" />
-						<input type="hidden" name="ie" value="utf-8" />
-						<input type="hidden" name="hl" value="" />
-						<input name="q" type="text" size="40" />
-						<input type="submit" name="sa" value="Search" />
+					<form method="POST" action = "query/">
+					{% csrf_token %}
+					<input type = "text" name = "queryField">
+					<button type = "submit">Query PubMed</button>
 					</form>
-					<script type="text/javascript" src="https%3A%2F%2Fcse.google.com%2Fcse/tools/onthefly?form=searchbox_demo&lang="></script>
 				</div>
 
         <div>

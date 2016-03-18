@@ -4,6 +4,7 @@ from ultimatereview.forms import UserForm, UserProfileForm, UpdateProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+import search
 
 def index(request):
 
@@ -16,6 +17,12 @@ def index(request):
     # Note that the first parameter is the template we wish to use.
 
     return render(request, 'ultimatereview/index.html', context_dict)
+
+def indexQueried(request):
+    if request.method == "POST":
+        query = request.POST["queryField"]
+        abstractList = search.main(query,"relevance","5")
+        return HttpResponse(abstractList[0])
 
 def myprofile(request):
     user = request.user
