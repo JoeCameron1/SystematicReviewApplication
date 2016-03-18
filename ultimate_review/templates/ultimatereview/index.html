@@ -1,11 +1,23 @@
+{% load staticfiles %}
 <html>
     <head>
         <title>The Ultimate Review</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
 
         <div>
             <h1>The Ultimate Review</h1>
+        </div>
+
+        <div>
+          {% if user.is_authenticated %}
+            <h2>Hello {{ user.username }}!</h1>
+          {% else %}
+            <h2>Hello Guest!</h1>
+          {% endif %}
         </div>
 
 				<label>Type your query here</label>
@@ -21,13 +33,17 @@
 					<script type="text/javascript" src="https%3A%2F%2Fcse.google.com%2Fcse/tools/onthefly?form=searchbox_demo&lang="></script>
 				</div>
 
-				<div>
-						<h2><a href="">Login</a></h2>
-        </div>
-
         <div>
-            <h3><a href="">My Reviews</a></h3>
-            <p>Go to your reviews</p>
+          {% if user.is_authenticated %}
+          <p>Go to your reviews</p>
+          <a href="/ultimatereview/myreviews/">My Reviews</a><br />
+          <p>Update your profile</p>
+          <a href="/ultimatereview/myprofile/">My Profile</a><br />
+          <a href="/ultimatereview/logout/">Logout</a><br />
+          {% else %}
+          <a href="/ultimatereview/register/">Register Here</a><br />
+          <a href="/ultimatereview/login/">Login</a><br />
+          {% endif %}
         </div>
 
         <div>

@@ -104,3 +104,12 @@ STATICFILES_DIRS = (
 # Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#Passwords
+PASSWORD_HASHERS = (
+'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
+
+#LOGIN URL, checking for logged in users.
+LOGIN_URL = '/ultimatereview/login/'

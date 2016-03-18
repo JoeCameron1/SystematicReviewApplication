@@ -21,11 +21,17 @@ class Review(models.Model):
     pool_size = models.IntegerField(default=0)
     abstracts_judged = models.IntegerField(default=0)
     document_judged = models.IntegerField(default=0)
+    slug = models.SlugField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Review, self).save(*args, **kwargs)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.title
 
 class Query(models.Model):
+    review = models.OneToOneField(Review)
     name = models.CharField(max_length=30)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
@@ -44,3 +50,15 @@ class Paper(models.Model):
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.name
+
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+    # The additional attributes we wish to include.
+    website = models.URLField(blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+    # Override the __unicode__() method to return out something meaningful!
+    def __unicode__(self):
+        return self.user.username
