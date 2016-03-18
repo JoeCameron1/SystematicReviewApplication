@@ -31,8 +31,8 @@ class Review(models.Model):
         return self.title
 
 class Query(models.Model):
+    review = models.OneToOneField(Review)
     name = models.CharField(max_length=30)
-    review = models.ForeignKey(Review)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.name

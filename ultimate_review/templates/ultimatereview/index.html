@@ -35,17 +35,13 @@
 
         <div>
           {% if user.is_authenticated %}
-          <a href="/ultimatereview/restricted/">Restricted Page</a><br />
+          <p>Go to your reviews</p>
+          <a href="/ultimatereview/myreviews/">My Reviews</a><br />
           <a href="/ultimatereview/logout/">Logout</a><br />
           {% else %}
           <a href="/ultimatereview/register/">Register Here</a><br />
           <a href="/ultimatereview/login/">Login</a><br />
           {% endif %}
-        </div>
-
-        <div>
-            <h3><a href="">My Reviews</a></h3>
-            <p>Go to your reviews</p>
         </div>
 
         <div>

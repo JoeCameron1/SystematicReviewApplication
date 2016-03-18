@@ -119,7 +119,7 @@ def user_login(request):
         return render(request, 'ultimatereview/login.html', {})
 
 @login_required
-def restricted(request):
+def myreviews(request):
     return HttpResponse("Since you're logged in, you can see this text!")
 
 @login_required
