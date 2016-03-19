@@ -24,14 +24,14 @@ def myprofile(request):
     user = request.user
     form = UserForm(initial={'username':user.username, 'email':user.email, 'password':user.password})
     if request.method == 'POST':
-        if form.is_valid():
 
             user.username = request.POST['username']
             user.email = request.POST['email']
-            user.password = request.POST['password']
+            if request.POST['password'] != "":
+                user.set_password(request.POST['password'])
 
-            user.save()
-            return HttpResponseRedirect('%s'%(reverse('profile')))
+            user.save() #All changes are saved.
+
     context = {
         "form": form
     }
