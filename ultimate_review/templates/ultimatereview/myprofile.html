@@ -8,7 +8,8 @@
 
 <h1>Your Profile</h1>
 
-<form>
+<form method="POST" action="/ultimatereview/myprofile/" class="" />
+  {% csrf_token %}
   {% for field in form %}
   <div class="fieldWrapper">
       {{ field.errors }}
@@ -17,7 +18,8 @@
       <p class="help">{{ field.help_text|safe }}</p>
       {% endif %}
   </div>
-{% endfor %}
+  {% endfor %}
+  <button type="submit">Save</button>
 </form>
 
 <a href="{% url 'index' %}">Update Profile</a><br />
