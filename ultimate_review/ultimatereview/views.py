@@ -27,11 +27,13 @@ def myprofile(request):
 
             user.username = request.POST['username']
             user.email = request.POST['email']
-            if request.POST['password'] != "":
-                user.set_password(request.POST['password'])
+            if request.POST['password'] != "": # Checking for an empty password field.
+                user.set_password(request.POST['password']) # If password is not empty, then set a new password.
 
-            user.save() #All changes are saved.
-
+            user.save() # All changes are saved.
+            
+    # Now display the updated form details.
+    form = UserForm(initial={'username':user.username, 'email':user.email, 'password':user.password})
     context = {
         "form": form
     }
