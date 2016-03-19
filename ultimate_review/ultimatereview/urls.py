@@ -8,4 +8,5 @@ urlpatterns = patterns('',
                        url(r'^myreviews/', views.myreviews, name='myreviews'),
                        url(r'^myprofile/', views.myprofile, name='myprofile'),
                        url(r'^logout/$', views.user_logout, name='logout'),
+                       url(r'^query/$', views.indexQueried, name='query'),
                        )

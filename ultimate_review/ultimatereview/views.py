@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+import search
 
 def index(request):
 
@@ -145,3 +146,9 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/ultimatereview/')
+
+def indexQueried(request):
+    if request.method == "POST":
+        query = request.POST["queryField"]
+        abstractList = search.main(query,"relevance","5")
+        return HttpResponse(abstractList)
