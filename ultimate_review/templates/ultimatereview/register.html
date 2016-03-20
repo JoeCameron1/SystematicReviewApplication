@@ -5,17 +5,24 @@
         <title>The Ultimate Review</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
     </head>
 
     <body>
-        <h1>Register with The Ultimate Review</h1>
+
+      <ul>
+        <li><h1><a href="/ultimatereview/">The Ultimate Review</a></h1></li>
+      </ul>
+
+      <div class="centertop">
+
+        <h2>Register with The Ultimate Review</h2>
 
         {% if registered %}
         The Ultimate Review says: <strong>Thank you for registering!</strong>
         <a href="/ultimatereview/">Return to the homepage.</a><br />
         {% else %}
-        The Ultimate Review says: <strong>Register here!</strong><br />
 
         <form id="user_form" method="post" action="/ultimatereview/register/"
                 enctype="multipart/form-data">
@@ -31,6 +38,8 @@
             <!-- Provide a button to click to submit the form. -->
             <input type="submit" name="submit" value="Register" />
         </form>
+        <h2><a href="{% url 'index' %}">Back to Homepage</a><br /></h2>
         {% endif %}
+      </div>
     </body>
 </html>

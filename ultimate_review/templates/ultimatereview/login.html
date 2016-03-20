@@ -5,11 +5,19 @@
         <title>The Ultimate Review</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
     </head>
 
     <body>
-        <h1>Login to The Ultimate Review</h1>
+
+      <ul>
+        <li><h1><a href="/ultimatereview/">The Ultimate Review</a></h1></li>
+      </ul>
+
+      <div class="centertop">
+
+        <h2>Login to The Ultimate Review</h2>
 
         <form id="login_form" method="post" action="/ultimatereview/login/">
             {% csrf_token %}
@@ -20,6 +28,9 @@
 
             <input type="submit" value="submit" />
         </form>
+
+        <h2><a href="{% url 'index' %}">Back to Homepage</a><br /></h2>
+      </div>
 
     </body>
 </html>

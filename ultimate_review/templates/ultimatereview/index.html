@@ -1,28 +1,37 @@
 {% load staticfiles %}
 <html>
     <head>
+
         <title>The Ultimate Review</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
     </head>
+
     <body>
 
-        <div>
-            <h1>The Ultimate Review</h1>
-        </div>
+      <ul>
+        <li><h1><a href="/ultimatereview/">The Ultimate Review</a></h1></li>
+        {% if user.is_authenticated %}
+        <li style="float:right"><h2><a href="/ultimatereview/logout/">Logout</a><br /><h2></li>
+        <li style="float:right"><h2><a href="/ultimatereview/myprofile/">My Profile</a><br /></h2></li>
+        <li style="float:right"><h2><a href="/ultimatereview/myreviews/">My Reviews</a><br /></h2></li>
+        {% else %}
+        <li style="float:right"><h2><a href="/ultimatereview/login/">Login</a><br /></h2></li>
+        <li style="float:right"><h2><a href="/ultimatereview/register/">Register Here</a><br /></h2></li>
+        {% endif %}
+      </ul>
 
-        <div>
+      <div class="content">
+
+				<div class="center">
           {% if user.is_authenticated %}
-            <h2>Hello {{ user.username }}!</h1>
+          <label>Hello {{ user.username }}, type your query here</label>
           {% else %}
-            <h2>Hello Guest!</h1>
+          <label>Hello, type your query here</label>
           {% endif %}
-        </div>
-
-				<label>Type your query here</label>
-
-				<div>
           <form method="POST" action = "query/">
   					{% csrf_token %}
   					<input type = "text" name = "queryField">
@@ -30,22 +39,9 @@
 					</form>
 				</div>
 
-        <div>
-          {% if user.is_authenticated %}
-          <p>Go to your reviews</p>
-          <a href="/ultimatereview/myreviews/">My Reviews</a><br />
-          <p>Update your profile</p>
-          <a href="/ultimatereview/myprofile/">My Profile</a><br />
-          <a href="/ultimatereview/logout/">Logout</a><br />
-          {% else %}
-          <a href="/ultimatereview/register/">Register Here</a><br />
-          <a href="/ultimatereview/login/">Login</a><br />
-          {% endif %}
+        <div class="centerbottom">
+            <h2><a href="">About</a></h2>
         </div>
-
-        <div>
-            <h4><a href="">About</a></h4>
-            <p>Learn about the ultimate review.</p>
-        </div>
+      </div>
     </body>
 </html>
