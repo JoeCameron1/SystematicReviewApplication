@@ -5,7 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from models import Review, Researcher, Query, Paper
 import search
+import datetime
+import json
 
 def index(request):
 
@@ -31,7 +34,7 @@ def myprofile(request):
                 user.set_password(request.POST['password']) # If password is not empty, then set a new password.
 
             user.save() # All changes are saved.
-            
+
     # Now display the updated form details.
     form = UserForm(initial={'username':user.username, 'email':user.email, 'password':user.password})
     context = {
@@ -139,7 +142,46 @@ def user_login(request):
 
 @login_required
 def myreviews(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    reviews = Review.objects.filter(user=request.user).order_by('-date_started')
+    if request.method == "POST":
+        review = Review.objects.create(user=request.user, title=request.POST.get('review', ""), date_started=datetime.datetime.now())
+        review.save()
+    reviews = Review.objects.filter(user=request.user).order_by('-date_started')
+    context = {
+    'reviews':reviews
+    }
+    return render(request, 'ultimatereview/myreviews.html', context)
+
+@login_required
+def single_review(request, review_name_slug):
+    context_dict = {}
+
+    try:
+        # Can we find a review name slug with the given name?
+        # If we can't, the .get() method raises a DoesNotExist exception.
+        # So the .get() method returns one model instance or raises an exception.
+        review = Review.objects.get(slug=review_name_slug)
+        context_dict['review_title'] = review.title
+
+        # Retrieve all of the associated pages.
+        # Note that filter returns >= 1 model instance.
+        queries = Query.objects.filter(review=review)
+
+        # Adds our results list to the template context under name pages.
+        context_dict['queries'] = queries
+        # We also add the category object from the database to the context dictionary.
+        # We'll use this in the template to verify that the category exists.
+        context_dict['review'] = review
+    except Review.DoesNotExist:
+        pass
+    return render(request, 'ultimatereview/querybuilder.html', context_dict)
+
+@login_required
+def abstractPool(request):
+    if request.method == "GET":
+        query = request.GET['query']
+        print query
+    return HttpResponse("Query is: " + query)
 
 @login_required
 def user_logout(request):

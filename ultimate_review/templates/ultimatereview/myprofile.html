@@ -6,7 +6,7 @@
 
 {% block body_block %}
 
-<h1>Your Profile</h1>
+<h2>Your Profile</h2>
 
 <form method="POST" action="/ultimatereview/myprofile/" class="" />
   {% csrf_token %}
@@ -24,6 +24,6 @@
 
 <p>Note: To keep password, leave the password field empty.</p>
 
-<a href="{% url 'index' %}">Back to Homepage</a><br />
+<h2><a href="{% url 'index' %}">Back to Homepage</a><br /></h2>
 
 {% endblock %}

@@ -25,10 +25,10 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 class CreateReviewForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Must be unique'}))
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Must be unique'}))
     class Meta:
         model = Review
-        fields = ('name',)
+        fields = ('title',)
 
 class CreateSimpleQueryForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Must be unique'}))

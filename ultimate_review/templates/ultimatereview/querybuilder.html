@@ -1,0 +1,33 @@
+{% extends 'ultimatereview/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ review_name }}{% endblock %}
+
+
+{% block body_block %}
+
+<html>
+<head>
+	<link rel="stylesheet" href = "{% static 'css/querybuilder.css' %}">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.mins.js"></script>
+	<script src="{% static "js/querybuilder.js" %}"></script>
+</head>
+</header>Query Builder</header>
+	<div class = "queryButton"><button>Query PubMed</button></div>
+	<select id = "fType" name = "fieldType">
+		<option value = "">All</option>
+		<option value = "[author]">Author</option>
+		<option value = "[book]">Book</option>
+	</select>
+	<input name = "queryBox" id = "queryBox"/>
+	<select id = "eType" name = "entryType">
+		<option value = "AND">And</option>
+		<option value = "OR">Or</option>
+		<option value = "NOT">Not</option>
+	</select>
+	<div id = "button"><button text = "Enter" id = "addButton">Add</button></div>
+<div class = "queries">test</div>
+</html>
+
+{% endblock %}
